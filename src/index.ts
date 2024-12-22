@@ -7,14 +7,14 @@ import chalk from 'chalk';
 import fs from 'fs';
 import path from 'path';
 
-import { version, description } from '../package.json';
+import packagejson from '../package.json' assert { type: 'json' };
 
 const program = new Command();
 
 program
   .name('setup-next-app')
-  .version(version)
-  .description(description)
+  .version(packagejson.version)
+  .description(packagejson.description)
   .argument('[app-name]', 'Name of the Next.js application')
   .option('--public', 'Create a public GitHub repository')
   .option('--private', 'Create a private GitHub repository')
@@ -25,7 +25,7 @@ program
 const appNameArg = program.args[0];
 
 function validateAppName(name: string): boolean {
-  return /^[a-z0-9\-]+$/.test(name);
+  return /^[a-z0-9-]+$/.test(name);
   console.log('name', name);
 }
 
@@ -37,8 +37,9 @@ function copyTemplates(targetDir: string): void {
   console.log(chalk.blue('📝 Copying configuration templates...'));
   const templatesDir = path.join(__dirname, 'templates');
 
+  // @todo: this file is in the old eslint format, update to flat config format.
   fs.copyFileSync(
-    path.join(templatesDir, '.eslintrc.json'),
+    path.join(templatesDir, 'old.eslintrc.json'),
     path.join(targetDir, '.eslintrc.json'),
   );
   fs.copyFileSync(
@@ -75,11 +76,14 @@ function validateGitHubCLI(): void {
     execSync('gh --version', { stdio: 'ignore' });
     console.log(chalk.green('✅ GitHub CLI is installed.'));
   } catch (error) {
-    console.error(
-      chalk.red(
-        '❌ GitHub CLI is not installed. Please install it from https://cli.github.com/ and try again.',
-      ),
-    );
+    if (error instanceof Error) {
+      console.error(
+        chalk.red(
+          `❌ GitHub CLI is not installed. Please install it from https://cli.github.com/ and try again.\n${error.message}`,
+        ),
+      );
+    }
+
     process.exit(1);
   }
 }
@@ -89,11 +93,13 @@ function validateGitHubLogin(): void {
     execSync('gh auth status', { stdio: 'ignore' });
     console.log(chalk.green('✅ User is logged in to GitHub.'));
   } catch (error) {
-    console.error(
-      chalk.red(
-        '❌ User is not logged in to GitHub. Please log in using "gh auth login" and try again.',
-      ),
-    );
+    if (error instanceof Error) {
+      console.error(
+        chalk.red(
+          `❌ User is not logged in to GitHub. Please log in using "gh auth login" and try again.\n${error.message}`,
+        ),
+      );
+    }
     process.exit(1);
   }
 }

@@ -18,6 +18,7 @@ This CLI tool should create a production-ready Next.js application.
 
 - [x] Make sure all appropriate configuration files are written or copied to the target project.
 - [x] Make sure the target project configuration files are complete and correct (ish).
+- [ ] Update the target project eslint config to use the new flat config format.
 
 ## Feedback
 
