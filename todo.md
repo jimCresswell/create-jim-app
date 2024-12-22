@@ -3,11 +3,11 @@
 ## Functionality
 
 - [x] Make sure all appropriate configuration files are written or copied to the new repository.
-- [ ] Make sure the target project configuration files are complete and correct.
+- [x] Make sure the target project configuration files are complete and correct (ish).
 
 ## Feedback
 
-- [ ] validate if the Github CLI is installed.
+- [x] validate if the Github CLI is installed.
 - [ ] validate if the user is logged in to Github.
 
 ## UX

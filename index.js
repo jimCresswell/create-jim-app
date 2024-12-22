@@ -45,8 +45,20 @@ function copyTemplates(targetDir) {
   shell.cp('-R', `${templatesDir}/.github/dependabot.yml`, `${targetDir}/.github`);
 }
 
+function validateGitHubCLI() {
+  try {
+    execSync('gh --version', { stdio: 'ignore' });
+    console.log(chalk.green('✅ GitHub CLI is installed.'));
+  } catch (error) {
+    console.error(chalk.red('❌ GitHub CLI is not installed. Please install it from https://cli.github.com/ and try again.'));
+    process.exit(1);
+  }
+}
+
 async function main() {
   console.log(chalk.blue.bold('\n🚀 Next.js Production App Setup\n'));
+
+  validateGitHubCLI();
 
   let appName = appNameArg;
   if (!appName) {
