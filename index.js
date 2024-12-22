@@ -55,10 +55,21 @@ function validateGitHubCLI() {
   }
 }
 
+function validateGitHubLogin() {
+  try {
+    execSync('gh auth status', { stdio: 'ignore' });
+    console.log(chalk.green('✅ User is logged in to GitHub.'));
+  } catch (error) {
+    console.error(chalk.red('❌ User is not logged in to GitHub. Please log in using "gh auth login" and try again.'));
+    process.exit(1);
+  }
+}
+
 async function main() {
   console.log(chalk.blue.bold('\n🚀 Next.js Production App Setup\n'));
 
   validateGitHubCLI();
+  validateGitHubLogin();
 
   let appName = appNameArg;
   if (!appName) {

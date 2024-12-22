@@ -8,7 +8,7 @@
 ## Feedback
 
 - [x] validate if the Github CLI is installed.
-- [ ] validate if the user is logged in to Github.
+- [x] validate if the user is logged in to Github.
 
 ## UX
 
