@@ -6,7 +6,6 @@ import inquirer from "inquirer";
 import chalk from "chalk";
 import fs from "fs";
 import path from "path";
-import shell from "shelljs";
 
 const program = new Command();
 
@@ -37,21 +36,36 @@ function copyTemplates(targetDir: string): void {
   console.log(chalk.blue("📝 Copying configuration templates..."));
   const templatesDir = path.join(__dirname, "templates");
 
-  shell.cp("-R", `${templatesDir}/.eslintrc.json`, targetDir);
-  shell.cp("-R", `${templatesDir}/prettier.config.js`, targetDir);
-  shell.cp("-R", `${templatesDir}/jest.config.js`, targetDir);
-  shell.cp("-R", `${templatesDir}/jest.setup.js`, targetDir);
-  shell.cp("-R", `${templatesDir}/.lintstagedrc.json`, targetDir);
-  shell.mkdir("-p", `${targetDir}/.github/workflows`);
-  shell.cp(
-    "-R",
-    `${templatesDir}/.github/workflows/ci.yml`,
-    `${targetDir}/.github/workflows`
+  fs.copyFileSync(
+    path.join(templatesDir, ".eslintrc.json"),
+    path.join(targetDir, ".eslintrc.json")
   );
-  shell.cp(
-    "-R",
-    `${templatesDir}/.github/dependabot.yml`,
-    `${targetDir}/.github`
+  fs.copyFileSync(
+    path.join(templatesDir, "prettier.config.js"),
+    path.join(targetDir, "prettier.config.js")
+  );
+  fs.copyFileSync(
+    path.join(templatesDir, "jest.config.js"),
+    path.join(targetDir, "jest.config.js")
+  );
+  fs.copyFileSync(
+    path.join(templatesDir, "jest.setup.js"),
+    path.join(targetDir, "jest.setup.js")
+  );
+  fs.copyFileSync(
+    path.join(templatesDir, ".lintstagedrc.json"),
+    path.join(targetDir, ".lintstagedrc.json")
+  );
+
+  const workflowsDir = path.join(targetDir, ".github", "workflows");
+  fs.mkdirSync(workflowsDir, { recursive: true });
+  fs.copyFileSync(
+    path.join(templatesDir, ".github", "workflows", "ci.yml"),
+    path.join(workflowsDir, "ci.yml")
+  );
+  fs.copyFileSync(
+    path.join(templatesDir, ".github", "dependabot.yml"),
+    path.join(targetDir, ".github", "dependabot.yml")
   );
 }
 
