@@ -75,10 +75,12 @@ async function main() {
 
   copyTemplates(process.cwd());
 
+  // Set up Husky.
   console.log(chalk.blue('🐶 Setting up Husky...'));
   execSync('npx husky-init && pnpm install', { stdio: 'inherit' });
   execSync('npx husky set .husky/pre-commit "npx lint-staged"', { stdio: 'inherit' });
-
+  execSync('npx husky set .husky/pre-push "pnpm type-check && pnpm test"', { stdio: 'inherit' });
+  
   console.log(chalk.green('\n✅ Setup Complete!'));
   console.log(chalk.green(`👉 cd ${appDir} && pnpm dev`));
 }

@@ -1,9 +1,9 @@
 {
-  "name": "setup-next-app-cli",
+  "name": "create-jim-app",
   "version": "1.0.0",
-  "description": "A CLI tool to create a production-ready Next.js app with TypeScript, ESLint, Prettier, Jest, Husky, and CI/CD setup.",
+  "description": "A CLI tool to create a production-ready Next.js app, the way I like it.",
   "bin": {
-    "setup-next-app": "index.js"
+    "create-jim-app": "index.js"
   },
   "scripts": {
     "start": "node index.js"
@@ -14,6 +14,6 @@
     "inquirer": "^8.2.5",
     "shelljs": "^0.8.5"
   },
-  "author": "Your Name",
+  "author": "@jimCresswell",
   "license": "MIT"
 }

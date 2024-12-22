@@ -2,7 +2,8 @@
 
 ## Functionality
 
-- [ ] Make sure all appropriate configuration files are written or copied to the new repository.
+- [x] Make sure all appropriate configuration files are written or copied to the new repository.
+- [ ] Make sure the target project configuration files are complete and correct.
 
 ## Feedback
 
