@@ -1,8 +1,8 @@
 # create-jim-app
 
-Create a Next.js configured the way I like it
+Create a Next.js app, configured the way I like it.
 
-A CLI tool to create a production-ready Next.js application with:
+This is CLI tool (this repo) to create a production-ready Next.js application (the target project) with:
 
 - TypeScript
 - ESLint
