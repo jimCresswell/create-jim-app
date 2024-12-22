@@ -4,7 +4,7 @@
 
 These are changes to be made to this repo, the CLI tool, not the target project.
 
-- [ ] Add linting to this repo
+- [x] Add linting to this repo
 - [ ] Add formatting to this repo
 - [ ] Add testing to this repo.
 - [ ] Add CI/CD workflows to this repo.

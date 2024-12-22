@@ -1,18 +1,22 @@
 {
   "name": "create-jim-app",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "A CLI tool to create a production-ready Next.js app, the way I like it.",
   "bin": {
     "create-jim-app": "index.js"
   },
   "scripts": {
-    "start": "node index.js"
+    "start": "node index.js",
+    "lint": "eslint ."
   },
   "dependencies": {
-    "commander": "^11.1.0",
-    "chalk": "^5.2.0",
-    "inquirer": "^8.2.5",
+    "commander": "^12",
+    "chalk": "^5",
+    "inquirer": "^12",
     "shelljs": "^0.8.5"
+  },
+  "devDependencies": {
+    "eslint": "^9"
   },
   "author": "@jimCresswell",
   "license": "MIT"
