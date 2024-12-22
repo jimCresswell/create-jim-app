@@ -10,6 +10,7 @@ These are changes to be made to this repo, the CLI tool, not the target project.
 - [ ] Add CI/CD workflows to this repo.
 - [ ] Add semantic versioning to this repo, and make sure it is updated automatically.
 - [ ] Add publishing to this repo.
+- [x] Convert codebase to TypeScript
 
 ## Functionality
 

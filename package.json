@@ -3,11 +3,12 @@
   "version": "0.1.0",
   "description": "A CLI tool to create a production-ready Next.js app, the way I like it.",
   "bin": {
-    "create-jim-app": "index.js"
+    "create-jim-app": "dist/index.js"
   },
   "scripts": {
     "start": "node index.js",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "build": "tsc"
   },
   "dependencies": {
     "commander": "^12",
@@ -16,8 +17,16 @@
     "shelljs": "^0.8.5"
   },
   "devDependencies": {
-    "eslint": "^9"
+    "eslint": "^9",
+    "typescript": "^5",
+    "@types/node": "^22",
+    "@typescript-eslint/eslint-plugin": "^8",
+    "@typescript-eslint/parser": "^8"
   },
   "author": "@jimCresswell",
-  "license": "MIT"
+  "license": "MIT",
+  "engines": {
+    "node": ">=22",
+    "pnpm": ">=9"
+  }
 }
