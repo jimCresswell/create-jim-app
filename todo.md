@@ -4,10 +4,12 @@
 
 These are changes to be made to this repo, the CLI tool, not the target project.
 
-- [x] Add linting to this repo
-- [x] Add formatting to this repo
-- [x] Convert codebase to TypeScript
+- [x] Add linting to this repo.
+- [x] Add formatting to this repo.
+- [x] Convert codebase to TypeScript.
+- [ ] Add type checks to this repo.
 - [ ] Add testing to this repo.
+- [ ] Add git hooks to this repo, using Husky.
 - [ ] Add CI/CD workflows to this repo.
 - [ ] Add semantic versioning to this repo, and make sure it is updated automatically.
 - [ ] Refactor index.ts into tested modules.
