@@ -26,10 +26,13 @@ const appNameArg = program.args[0];
 
 function validateAppName(name: string): boolean {
   return /^[a-z0-9-]+$/.test(name);
-  console.log('name', name);
 }
 
-function normalizeName(rawName: string): string {
+function normalizeName(rawName: string | undefined): string {
+  if (rawName === undefined || rawName === '') {
+    console.error(chalk.red(`❌ Error: Invalid app name: "${rawName}"`));
+    process.exit(1);
+  }
   return rawName.toLowerCase().replace(/[^a-z0-9]/g, '-');
 }
 
