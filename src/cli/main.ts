@@ -3,6 +3,7 @@ import { getPackageJson } from './config.js';
 import { exitWithError } from './errorHandling.js';
 import { runValidations } from './validation.js';
 import { setupApp } from './appSetup.js';
+import { normalizeName } from './stringNormalisation.js';
 
 const packagejson = getPackageJson();
 
@@ -20,22 +21,17 @@ program
 
 const appNameArg = program.args[0];
 
-function normalizeName(rawName: string | undefined): string {
-  if (rawName === undefined || rawName === '') {
+async function main() {
+  try {
+    runValidations();
+    const appName = normalizeName(appNameArg);
+    setupApp(appName);
+  } catch (error: unknown) {
     exitWithError({
-      message: `❌ Error: Invalid app name: "${rawName}"`,
+      message: 'An unknown error occurred',
+      originalError: error,
     });
   }
-  return rawName.toLowerCase().replace(/[^a-z0-9]/g, '-');
 }
 
-try {
-  runValidations();
-  const appName = normalizeName(appNameArg);
-  setupApp(appName);
-} catch (error: unknown) {
-  exitWithError({
-    message: 'An unknown error occurred',
-    originalError: error,
-  });
-}
+export { main, exitWithError };
