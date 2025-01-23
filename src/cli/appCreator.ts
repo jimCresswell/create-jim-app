@@ -1,14 +1,26 @@
 import { execSync } from 'child_process';
 import chalk from 'chalk';
 
-function createNextApp(appDir: string): void {
+import { copyTemplates } from './templateManager.js';
+
+function createJimApp(appDir: string): void {
+  // Create the Next.js application.
   console.log(chalk.blue('📦 Creating Next.js application...'));
   execSync(
-    `npx create-next-app@latest ${appDir} --typescript --eslint --app --src-dir --tailwind --use-pnpm`,
+    `npx create-next-app@latest ${appDir} --typescript --eslint --app --src-dir --tailwind --use-pnpm --yes`,
     { stdio: 'inherit' },
   );
 
+  // Change to the app directory.
   process.chdir(appDir);
+
+  // Copy the templates.
+  copyTemplates(appDir);
+
+  // Set up Git.
+  execSync('git init', { stdio: 'inherit' });
+
+  // Install dependencies.
   console.log(chalk.blue('🔧 Installing dependencies...'));
   execSync(`pnpm install --save-dev eslint prettier husky lint-staged`, {
     stdio: 'inherit',
@@ -25,4 +37,4 @@ function createNextApp(appDir: string): void {
   });
 }
 
-export { createNextApp };
+export { createJimApp };

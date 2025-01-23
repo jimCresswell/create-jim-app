@@ -10,7 +10,9 @@
     "start": "node index.js",
     "lint": "eslint .",
     "build": "tsc",
-    "test": "vitest"
+    "postbuild": "cp package.json dist/ && cp -r ./src/templates dist/",
+    "test": "vitest",
+    "test:e2e": "vitest --config vitest.e2e.config.ts"
   },
   "dependencies": {
     "chalk": "^5",

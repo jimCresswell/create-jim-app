@@ -6,7 +6,7 @@ function normalizeName(rawName: string | undefined): string {
       message: `❌ Error: Invalid app name: "${rawName}"`,
     });
   }
-  return rawName.toLowerCase().replace(/[^a-z0-9]/g, '-');
+  return rawName.toLowerCase().replace(/[^a-z0-9./\\]/g, '_');
 }
 
 export { normalizeName };

@@ -2,6 +2,10 @@
 
 Create a Next.js app, configured the way I like it.
 
+## Development
+
+Up to `SHOW_STACK=true node ./dist ./e2e_tests/test_apps/fake_app` and debugging errors.
+
 ## Overview
 
 This is a CLI tool (this repository), built with:
