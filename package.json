@@ -12,7 +12,8 @@
     "build": "tsc",
     "postbuild": "cp package.json dist/ && cp -r ./src/templates dist/",
     "test": "vitest",
-    "test:e2e": "vitest --config vitest.e2e.config.ts"
+    "pretest:e2e": "pnpm build && rm -rf ./e2e_tests/test_apps/fake_app",
+    "test:e2e": "SHOW_STACK=true node ./dist ./e2e_tests/test_apps/fake_app"
   },
   "dependencies": {
     "chalk": "^5",
